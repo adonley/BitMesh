@@ -1,0 +1,30 @@
+.padded-img {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.padded-std {
+	padding: 20px;
+}
+
+.padded-small {
+	padding: 5px;
+}
+
+.match-parent {
+	width: 100%;
+}
+
+.black-border {
+	border:  4px solid black;
+	border-radius: 10px;
+}
+
+.scrollin {
+	overflow-y: scroll;
+	height: 150px;
+}
+
+.full-width {
+	width: 100%;
+}

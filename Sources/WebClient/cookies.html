@@ -1,0 +1,58 @@
+<html>
+<script>
+
+document.cookie="private_key=abc";
+document.cookie="boogers=true";
+var getCookies = function(){
+   console.log(document.cookie);
+  var pairs = document.cookie.split(";");
+  var cookies = {};
+  for (var i=0; i<pairs.length; i++){
+    var pair = pairs[i].split("=");
+    cookies[pair[0]] = unescape(pair[1]);
+    console.log(pair[0] + ":" + pair[1]);
+  }
+  return cookies;
+};
+
+
+function print_object(object, indent)
+{
+   if (object === undefined)
+   {
+      return 'undefined';
+   }
+   if (indent === undefined)
+   {
+      console.log(print_object(object, ''));
+      return;
+   }
+
+   if (typeof object == 'function')
+   {
+      return 'function()';
+   }
+   if (typeof object !== "object")
+   {
+      return object.toString();
+   }
+
+
+   var new_indent = indent + '   ';
+   var string = '{\n';
+   for (var key in object)
+   {
+      string += new_indent + key + " : " + print_object(object[key], new_indent + '   ') + '\n';
+   }
+   string += '}\n';
+   return string;
+}
+
+print_object({
+   'hello':'world',
+   'f': function() { console.log('peanuts'); }
+});
+
+
+</script>
+</html>

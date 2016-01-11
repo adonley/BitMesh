@@ -1,0 +1,13 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: bitmesh
+
+Files: *
+Copyright: 2015 Andrew Donley <andrew@bitmesh.network>
+           2015 Chris Smith <christopher@bitmesh.network>
+License: All Rights Reserved
+
+Files: debian/*
+Copyright: 2015 Andrew Donley <andrew@bitmesh.network>
+           2015 Chris Smith <christopher@bitmesh.network>
+License: All Rights Reserved
+

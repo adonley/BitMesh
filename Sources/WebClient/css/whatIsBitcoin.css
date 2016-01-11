@@ -1,0 +1,22 @@
+h3
+{
+}
+
+.btc
+{
+	float: left;
+	margin: 0rem 1.3rem 0rem 1rem;
+	height: 3.5rem;
+}
+
+.clear-right
+{
+	clear: right;
+}
+
+.white-bg
+{
+	padding-left: 2rem;
+	padding-right: 2rem;
+	padding-bottom: 2rem;
+}

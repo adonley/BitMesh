@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<WISPAccessGatewayParam
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://www.acmewisp.com/WISPAccessGatewayParam.xsd">
+    <Redirect>
+       <MessageType>100</MessageType>
+       <ResponseCode>0</ResponseCode>
+       <VersionLow>2.0</VersionLow>
+       <VersionHigh>2.0</VersionHigh>
+       <AccessLocation>isocc=za,cc=27,ac=12,network=Bitmesh</AccessLocation>
+       <AccessProcedure>1.0</AccessProcedure>
+       <LocationName>BitMesh</LocationName>
+       <LoginURL>http://54.94.132.0</LoginURL>
+       <AbortLoginURL>http://54.94.132.0</AbortLoginURL>
+    </Redirect>
+</WISPAccessGatewayParam>
+-->
+<form id ="form" action="http://10.0.19.84:8080" style="visibility: hidden;" >
+    <input type="text" name="username" value="Mickey">
+    <input type="text" name="password" value="Mouse">
+    <input type="submit" value="Submit">
+</form>
+<div class="headlineBg">
+    <span class="headline"> This is a BitMesh open WiFi channel. </span>
+</div>
+<div class="enter">
+    <img class="symbol" src="http://54.94.132.0/images/symbol.png" width="160px"><br />
+
+    <!-- TODO: make this invisible for a couple of seconds -->
+    <a id="getOnline" class="getOnline goButton" href="http://54.94.132.0" onclick="window.open('http://54.94.132.0');">Get Online</a>
+    <!--
+            <input type="button" value="Get Online" class="getOnline goButton" onclick="window.open('https://54.94.132.0');" />
+    -->
+    <!--<form class="getOnline" action="getOnline">
+        <input type="button" value="Get Online" class="goButton" />
+    </form>-->
+    <div class="terms">
+        By getting online you agree to our
+
+        <a tabindex="0" role="button" data-toggle="popover" data-html="true" data-trigger="focus" title="Terms and Conditions" data-placement="bottom" data-content="This is a FREE shared connection to the Internet. People who download or stream huge files slow down access for everyone sharing this connection. Please play nice and don't be a bandwidth hog. <br /> <br />
+              Disclaimer of liability:<br />
+              BitMesh exercises no control whatsoever over the content of the information passing through its systems. BitMesh makes no warranties of any kind, expressed or implied, for services provided. BitMesh disclaims any warranty of merchantability or fitness for a particular service. BitMesh is not responsible for any damage suffered from the direct or indirect use of its services. This includes, but is not limited to: expenses and loss of data resulting from delays, nondeliveries, or service interruptions caused by its own negligence or errors or omissions. Use of any information via BitMesh is at your own risk. BitMesh specifically denies any responsibility for the accuracy or quality of information obtained through its services. <br /> <br />
+              Restrictions:<br />
+              BitMesh may only be used for lawful purposes. Transmission or storage of material in violation of global, federal, state, or local regulations is prohibited. This includes, but is not limited to, material that is: copyrighted, judged to be threatening, compromises security or privacy, or is protected by trade secret. You agree to comply with the rules and restrictions appropriate to other networks and services connected directly or indirectly to BitMesh. This includes, but is not limited to, the Acceptable Use Policies established for the Internet as a whole which expressly prohibits certain commercial solicitation. You agree to not send unsolicited advertisements (junk mail) through the Internet and not to send email to anyone after they have asked you to stop sending them email (harassment).
+              </div></center>">Terms of Service</a>
+    </div>
+
+
+</div>
+</div>
+</html>

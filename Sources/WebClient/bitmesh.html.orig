@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<head>
+         <meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+         <link rel="stylesheet" type="text/css" href="bitmesh.css">
+         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+         <script type="text/javascript" src="./lib/bitmesh_loader.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+         
+
+         <title id="title_display">BitMesh</title>
+    </head>
+    <body>
+    			
+
+		<div class="container">
+			<div class="logoDiv">
+				<img class="logo" src="images/logo.svg"> <br />
+				<div class="headline">
+					A secure marketplace for sharing WiFi access.
+				</div>
+			</div>
+			
+			<div class="portalDiv container">
+				<div class="getOnline">
+					<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Popover on left
+</button>
+						<h2>Want to get online?</h2>
+						You can pay for internet access here using Bitcoin. <br /><br />
+						<div class="info">
+							<div id="time_spent"></div>
+							<div id="money_spent"></div>
+							<div id="price_display"></div>
+							<div id="repayment_prompt"></div>
+						</div>
+				</div>
+				<div id="wallet_button" class="col-md-4 center-block">
+					<div id="qr_wrapper">
+						<div id="qrcode"></div>
+						<div id="uri_string"></div>
+					</div>
+					<p>If you already have a bitcoin wallet, click here.</p>
+				</div>
+
+<<<<<<< HEAD
+				<div id="wallet_button" class="col-md-4 center-block">
+					<image class="xapo hvr-shrink" id="xapo" src="images/xapo.png">
+					<p>If you don't have a bitcoin wallet, you can sign up with Xapo.</p>
+			   </div>
+			</div>
+		</div>
+	</body>
+</html>
+=======
+	<div id="qr_wrapper">
+			<div id="qrcode"></div><br>
+			<div id="uri_string"></div>
+	</div>
+   <div id="time_spent"></div>
+   <div id="money_spent"></div>
+   <div id="price_display"></div>
+   <div id="repayment_prompt"></div>
+<!--    <input type="button" id="disconnect_button" value="Disconnect and Refund" onClick="close_channel()">
+ -->
+ </html>
+>>>>>>> 9b0867b59105ab9a72ad0320131d559440c5940f

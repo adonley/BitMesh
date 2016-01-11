@@ -1,0 +1,126 @@
+#!/bin/bash
+## Created by Andrew Donley on April 7, 2015
+## Installation script for a raspberrypi using
+## BitMesh.
+
+## Exit if there are any errors. Might need to rethink this.
+#set -e
+
+. /usr/share/debconf/confmodule
+
+db_capb backup
+
+function main 
+{
+	#describe_changes;
+	# Setup has to come before the config functions.
+	setup_interfaces;
+
+	dnsmasq_config;
+	hostapd_config;
+
+	systemctl daemon-reload;
+
+	sysctl_config;
+	interfaces_config;
+	general_system_config;
+}
+
+function describe_changes
+{
+	# TODO: put this in the preinstall script before the dependencies get installed.
+	printf "%s\n\n%s" "During the installation process we will be installing hostapd and dnsmasq. The original configurations for these programs and \"/etc/network/interfaces\" will be saved and moved to a temporary location when bitmesh is running. Also, ipv4/ipv6 forwarding will be enabled on your system." "Is this ok with you?";
+	local ok;
+}
+
+function setup_interfaces
+{
+	db_get bitmesh/outface
+	OUT_FACE=$RET
+	echo "OUTFACE: $OUT_FACE";
+
+	db_get bitmesh/inface
+	IN_FACE=$RET
+	echo "INFACE: $IN_FACE";
+
+	## TODO: Use this instead of db_get because we don't want to run as sudo all the time.
+	# Write the inface and outface to file
+	# echo $OUT_FACE > /opt/bitmesh/interfaces.conf
+	# echo $IN_FACE >> /opt/bitmesh/interfaces.conf
+}
+
+## Write interface and rang to dnsmasq.conf
+function dnsmasq_config
+{
+	printf "Updating /etc/dnsmasq.conf\n";
+	local conf_location="/etc/dnsmasq.conf";
+
+	## Don't over-write the original if we've already installed
+	if [ ! -a  $conf_location"_orig" ]
+	then
+		mv $conf_location $conf_location"_orig";
+	else
+		rm $conf_location
+	fi
+	
+	printf "interface=$IN_FACE\ndhcp-range=10.0.19.84,10.0.19.255,12h" >> /etc/dnsmasq.conf;
+}
+
+## Fix hostapd init.d file
+function hostapd_config
+{
+	printf "Updating /etc/hostapd/hostapd.conf, for some reason this is broken on the standard install.\n";
+	sed -i '/DAEMON_CONF/c\DAEMON_CONF=/etc/hostapd/hostapd.conf' /etc/init.d/hostapd;
+	if [ -a /etc/hostapd/hostapd.conf ]
+	then
+		mv /etc/hostapd/hostapd.conf /etc/hostapd/hostapd.conf_orig
+	fi
+	printf "interface=$IN_FACE\ncountry_code=US\nssid=BitMesh\nhw_mode=g\nchannel=1\nbeacon_int=100\nmacaddr_acl=0\nwmm_enabled=1" > /etc/hostapd/hostapd.conf
+	chmod 755 /etc/hostapd/hostapd.conf
+}
+
+## Enable ipv4 forwarding
+function sysctl_config
+{
+	sed -i '/net.ipv4.ip_forward/c\net.ipv4.ip_forward = 1' /etc/sysctl.conf;
+	sed -i '/net.ipv6.conf.all.forwarding/c\net.ipv6.conf.all.forwarding = 1' /etc/sysctl.conf;
+	sysctl -p /etc/sysctl.conf;
+}
+
+## Preserve the same interfaces file except for the interface in question
+function interfaces_config
+{
+	## Only move the file if the original hasn't already been moved
+	if [ ! -f  /etc/network/interfaces_orig ]
+	then
+		cp /etc/network/interfaces /etc/network/interfaces_orig
+	else
+		## Otherwise bring back original configuraton and edit from there
+		cp /etc/network/interfaces_orig /etc/network/interfaces
+	fi
+
+	# Copy everything except for the interface we are interested in
+	awk -vRS='' '$2 != "'$IN_FACE'"i {print; print "";}' /etc/network/interfaces > /etc/network/interfaces.tmp
+	printf "iface $IN_FACE inet static\naddress 10.0.19.84" >> /etc/network/interfaces.tmp;
+	mv /etc/network/interfaces.tmp /etc/network/interfaces
+}
+
+function general_system_config
+{
+	service hostapd stop
+	service dnsmasq stop
+
+	# Move the interfaces file back to the original
+	mv /etc/network/interfaces /etc/network/interfaces_bmesh
+	mv /etc/network/interfaces_orig /etc/network/interfaces
+
+	# TODO: Might use a different method to disable dnsmasq and hostapd.
+	update-rc.d hostapd disable
+	update-rc.d dnsmasq disable
+
+	#update-menus;
+}
+
+main;
+
+#DEBHELPER#

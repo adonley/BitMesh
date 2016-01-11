@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            BitMesh Dashboard
+        </title>
+        <meta charset="UTF-8">
+        <link rel="icon" href="https://www.bitmesh.network/favicon.png" type="image/png"><!-- BootStrap -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css">
+        <link rel="stylesheet" href="css/jquery-ui.structure.min.css" type="text/css">
+        <link rel="stylesheet" href="css/jquery-ui.theme.min.css" type="text/css">
+        <link rel="stylesheet" href="css/bitmesh.css" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row text-center page-container">
+                <div class="spacer"></div>
+                <div id="top_panel" class="top-panel col-xs-12 hidden-md"></div>
+                <div id="side_panel" class="side-panel col-md-3 hidden-xs visible-md visible-lg">
+                    <img class="padded-img side-panel-img" src="images/BitMeshLogo.png">
+                    <div>
+                        <h1>
+                            <b>Seller Dashboard</b>
+                        </h1>
+                    </div>
+                    <div>
+                        Current conversion: 1 BTC = <span id="current_price">?</span> USD
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="spacer"></div>
+                </div>
+                <div class="settings col-md-9 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                    <div class="padded-std">
+                        <form method="post" action="">
+                            <div class="dashboard">
+                                <div class="padded-small price-units">
+                                    <label for="price_unit">Price Units</label> <select name="price_unit" id="price_unit">
+                                        <option value="mbtc">
+                                            mBTC
+                                        </option>
+                                        <option value="btc">
+                                            BTC
+                                        </option><!--<option value="usd">USD (cents)</option> -->
+                                    </select>
+                                </div>
+                                <div class="padded-small meter-units">
+                                    <label for="meter_unit">Meter Units</label> <select id="meter_unit">
+                                        <option value="time">
+                                            Time
+                                        </option>
+                                    </select>
+                                </div><!-- <div id="sub-meter-interval" class="padded-small">
+                            <label for="sub-meter-interval">Time Interval</label>
+                            <select name="sub-meter-interval">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div> -->
+                            </div>
+                            <div class="row">
+                                <div id="email_div" class="col-xs-12 col-sm-6">
+                                    <form id="email_form" method="post" action="">
+                                        <label for="email_1">Enter email address:</label><br>
+                                        <input type="text" id="email_1"><br>
+                                        <div class="spacer"></div><label for="email_2">Re-enter email address:</label><br>
+                                        <input type="text" id="email_2">
+                                        <div class="small-spacer text-center">
+                                            <input id="save_email" type="submit" data-inline="true" value="Update">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div id="btc_address_div" class="col-xs-12 col-sm-6">
+                                    <form id="btc_address_form" method="post" action="">
+                                        <label for="btc_address">Enter your BTC address:</label><br>
+                                        <input type="text" id="btc_address">
+                                        <div class="small-spacer text-center">
+                                            <input id="save_btc_address" type="submit" data-inline="true" value="Update">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                            <div class="spacer"></div>
+                            <div class="row">
+                                <div id="price_div">
+                                    <div class="price col-xs-8 col-xs-offset-2">
+                                        <label for="price">Price: <span id="price_display">?</span> or <span id="payout_threshold_btc_display">1000</span> <span class="price_display">BTC</span></label>
+                                        <div id="slider"></div><label for="price">
+                                        <div class="small-spacer"></div>
+                                        <input id="price_input"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="payout-threshold">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <label for="price"><label for="payout_threshold_range">Payout Threshold: <span id="payout_threshold_usd_display">?</span> or <span id="payout_threshold_btc_display2">1000</span> <span class="price_display">bits</span></label><br>
+                                        <input type="range" id="payout_threshold_range" class="padded-slider" value="10000" min="50000" max="1000000" step="500"> <input type="text" id="payout_threshold_input"><br></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 small-spacer text-center">
+                                <input id="save_parameters" type="submit" data-inline="true" value="Save">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div><script src="js/jquery-1.11.2.min.js" type="text/javascript">
+</script><script src="js/bootstrap.min.js" type="text/javascript">
+</script><script src="js/jquery-ui.min.js" type="text/javascript">
+</script><script src="js/commons-validator.js" type="text/javascript">
+</script><script src="js/bitmesh.js" type="text/javascript">
+</script><script src="js/chart.core.js" type="text/javascript">
+</script><script src="js/chart.line.js" type="text/javascript">
+</script><script src="js/bitmesh-charts.js" type="text/javascript">
+</script>
+    </body>
+</html>

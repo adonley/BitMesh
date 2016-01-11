@@ -1,0 +1,140 @@
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(../fonts/Lato/Lato_latin.woff2) format('woff2'), url(../fonts/Lato/Lato_latin.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lato Italic'), local('Lato-Italic'), url(../fonts/Lato/Lato_400.woff2) format('woff2'), url(../fonts/Lato/Lato_400.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Istok Web';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Istok Web Regular'), local('IstokWeb-Regular'), url(../fonts/Istok_Web/Istok_Web.woff2) format('woff2'), url(../fonts/Istok_Web/Istok_Web.woff) format('woff');
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+.popover-content {
+height: 50px;
+overflow-y: scroll;
+height: 160px;
+
+}
+
+.popover {
+  max-width: 50vw;
+  width: auto;
+  height: 200px;
+  container: 'terms'
+}
+
+.terms
+{
+  margin: 15px;
+  font-size: 11px;
+}
+
+.termsdiv
+{
+  position: absolute;
+  text-align: left;
+  width:800px;
+  border:1px solid #ccc;
+  overflow:auto;
+  max-width: 90%;
+  padding: 0px 10px 0px 0px;
+}
+
+a {
+  color: #2980B9;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+a:hover { color: #7E8C8C; }
+
+.logo{
+    margin-top:1.2vw;
+    margin-left:1vw;
+}
+
+.container
+{
+	font-family: Open Sans;
+	font-weight: 600;
+}
+
+.headline
+{
+  max-width: 90%;
+  color:#FFF;
+  font-family: Open Sans;
+  font-size:20px;
+  font-weight: 600;
+  position: relative;
+  top: 25%;
+  transform: translateY(-50%);
+}
+
+.headlineBg
+{
+    text-align: center;
+    height: 70px;
+    margin-top:1.7vw;
+    background-color: #3B97D3;
+}
+
+.symbol
+{
+  margin: 20px;
+}
+
+.getOnline
+{
+  margin: auto 0 10 10;
+  font-family: Open Sans;
+  font-size:28px;
+  font-weight: 400;
+}
+
+.goButton {
+    background: #fff;
+    border-radius: 7px;
+    padding: 5px 25px 5px 25px;
+    border: 2px solid #2980B9;
+    color: #2980B9;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition:.5s;
+}
+.goButton:hover {
+    background: #2980B9;
+    border-radius: 7px;
+    border: 2px solid 2980B9;
+    color: #fff;
+}
+
+.enter
+{
+  padding:20px;
+  text-align: center;
+}

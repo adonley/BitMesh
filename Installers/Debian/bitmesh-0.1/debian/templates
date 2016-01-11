@@ -1,0 +1,15 @@
+Template: bitmesh/outface
+Type: select
+Choices: ${choices}
+Description: What interface has an internet connection?
+ What interface is actively connected to the internet?
+ If you have a wired connection to a router this is
+ normally eth0.
+
+Template: bitmesh/inface
+Type: select
+Choices: ${choices}
+Description: What interface will clients be connecting to? 
+ Clients will be using this interface to gain access to
+ the internet. So if you have an internet connection on
+ eth0, then this interface would most likely be wlan0.

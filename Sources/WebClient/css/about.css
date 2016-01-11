@@ -1,0 +1,90 @@
+
+.about-headline
+{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.buying-internet
+{
+  height:1vw;
+  min-height: 10px;
+  margin-top:2vw;
+  font: Source Sans Pro;
+  background-color: #FFC50A;
+}
+
+.selling-connection
+{
+  height:1vw;
+  min-height: 10px;
+  margin-top:2vw;
+  font: Source Sans Pro;
+  background-color: #1E518B;
+}
+
+.details
+{
+  padding: 0px 20px 0px 20px;
+}
+
+.buying-faq-btn
+{
+  height:40px;
+  width: 180px;
+  border: 1px solid #000;
+  font: Source Sans Pro;
+  font-size: 16px;
+  color: #FFF;
+  background-color: #E57D24;
+  border-radius: 5px;
+  margin: 10px 0px 10px 0px;
+}
+
+.buying-faq-btn:hover, .buying-faq-btn:focus {
+    background: #E29627;
+    border: solid 1px #2A4E77;
+    text-decoration: none;
+}
+
+.selling-faq-btn
+{
+  height:40px;
+  width: 180px;
+  border: 1px solid #000;
+  font: Source Sans Pro;
+  font-size: 16px;
+  color: #FFF;
+  background-color: #2980B9;
+  border-radius: 5px;
+  margin: 10px 0px 10px 0px;
+}
+
+.selling-faq-btn:hover, .selling-faq-btn:focus {
+    background: #1E518B;
+    border: solid 1px #2A4E77;
+    text-decoration: none;
+}
+
+.faq-div
+{
+  margin-top: 20px;
+  padding: 20px 30px 40px 30px;
+  background-color: #ECF0F0;
+}
+
+#selling-info
+{
+  display: none;
+}
+
+#buying-info
+{
+  display: none;
+}
+
+.white-bg
+{
+  padding-left: 20px;
+  padding-right: 20px;
+}

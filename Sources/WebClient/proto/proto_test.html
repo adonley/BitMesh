@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>   
+        <script src="./Long.min.js"></script>         <!-- https://raw.github.com/dcodeIO/Long.js/master/dist/Long.min.js -->
+        <script src="./ByteBufferAB.min.js"></script>   <!-- Please copy the following files into here: -->
+        <script src="./ProtoBuf.js"></script>     <!-- https://raw.github.com/dcodeIO/ProtoBuf.js/master/dist/ProtoBuf.min.js -->
+        <script>
+        if (typeof dcodeIO === 'undefined' || !dcodeIO.ProtoBuf) {
+            throw(new Error("ProtoBuf.js is not present. Please see www/index.html for manual setup instructions."));
+        }
+        // Initialize ProtoBuf.js
+        var ProtoBuf = dcodeIO.ProtoBuf;
+//        var ProtoBuf = require("protobufjs");
+        var builder = ProtoBuf.loadProtoFile("./paymentchannel.proto");
+        var Message = builder.build("paymentchannels.TwoWayChannelMessage");
+        </script>
+    </head>
+    <body>
+    <textarea id="log" style="width: 100%; height: 200px"></textarea><br />
+    <input type="text" id="text" value="hello world!" /> <button onclick="send()">Send</button>
+
+    <script>
+    var log = document.getElementById("log");
+    var text = document.getElementById("text");
+    var MessageType = 
+    {
+        SERVER_VERSION: 2,
+        INITIATE: 3,
+        PRICE: 4, 
+        FUNDING: 5,
+        RETURN_REFUND: 7,
+        CHANNEL_OPEN: 9,
+        PAYMENT_ACK: 13,
+        CLOSE: 11,
+        ERROR: 12
+    }
+
+    // Connect to our server: node server.js
+    var socket = new WebSocket("ws://localhost:11984");
+    socket.binaryType = "arraybuffer"; // We are talking binary
+    socket.onmessage = function(evt)
+    {
+        try 
+        {
+            // Decode the Message
+            var msg = Message.decode(evt.data);
+            switch (msg.type)
+            {
+                case Message.MessageType.SERVER_VERSION:
+                    var version = msg.server_version;
+                    log.value += "Received server version ";
+                    log.value += version.major + "." + version.minor + '\n';
+                    break;
+                case Message.MessageType.INITIATE:
+                    var initiate = msg.initiate;
+                    log.value += "Received initiate \n";
+                    log.value += "minimum channel size: " + initiate.min_accepted_channel_size + '\n';
+                    break;
+                case Message.MessageType.PRICE:
+                    var price = msg.price;
+                    log.value += "Received price: " + price.proposed_price + '\n';
+                    break;
+            }
+        } 
+        catch (err) 
+        {
+            log.value += "Error: "+err+"\n";
+        }
+    };
+    function send() {
+        if (socket.readyState == WebSocket.OPEN) {
+            var msg = new Message({
+                "type": 1,
+                "client_version": 
+                {
+                    "major": 1,
+                    //"minor": 0
+                }
+            });
+            var encoded = msg.encode();
+            var arrayBuffer = encoded.toArrayBuffer();
+            socket.send(arrayBuffer);
+            log.value += "Sent: ";
+            for (var i = 0; i < arrayBuffer.size; i++)
+            {
+                log.value += arrayBuffer[i] + " ";
+            }
+            log.value += "\n";
+        } else {
+            log.value += "Not connected\n";
+        }
+    }
+    socket.onopen = function() {
+        log.value += "Connected\n";
+        send();
+    };
+    socket.onclose = function() {
+        log.value += "Disconnected\n";
+    };
+
+    log.value = ""; // Clear log on reload
+    </script>
+    </body>
+</html>

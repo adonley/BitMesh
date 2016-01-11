@@ -1,0 +1,15 @@
+sequence:
+
+1: User requests webpage
+2: Pi/Router redirects to bitmesh controlled server (onion?)
+3: Bitmesh server serves Browser the paywall
+4: Browser makes websocket connection to router at well-known subnet ip
+5: Router sends price policy to browser via websocket
+6: Browser sends address to listen for to the router.
+6: Browser shows bitcoinURI as qrcode and string, along with price
+7: User reads URI with wallet, creates transaction, sends it to the router
+8: Router broadcasts transaction to bitcoin network and also sends it via websocket to browser
+9: Browser uses the unspent txo to fund multisig escrow, begins payment channel
+
+
+Need a disconnect protocol

@@ -1,0 +1,20 @@
+Source: bitmesh
+Section: misc
+Priority: optional
+Maintainer: Andrew Donley <andrew@bitmesh.network>
+Build-Depends: debhelper (>= 9), debconf (>= 0.2.26), openjdk-7-jre, dnsmasq (>=2.5), hostapd (>=2.0), iptables
+Standards-Version: 3.9.5
+Homepage: https://www.bitmesh.network
+
+Package: bitmesh
+Architecture: all
+Multi-Arch: same
+Depends: ${misc:Depends}
+Description: Share your internet with those around you. 
+ BitMesh allows people to share their internet connection 
+ with peers in exchange for bitcoin while leveraging existing 
+ devices and internet architecture.
+ Negotiation of the price of data takes place in a local "marketplace", 
+ achieving a fair price for internet without requirement for a 
+ contract or third party escrow.
+ 

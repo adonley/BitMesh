@@ -1,0 +1,140 @@
+<html>
+<script src="three.min.js"></script>
+<script src="OrbitControls.js"></script>
+<script src="OBJMTLLoader.js"></script>
+<script src="MTLLoader.js"></script>
+<body>
+</body>
+<script>
+
+    var scene, camera, renderer;
+    var geometry, material, mesh, sphere;
+    var time, x_axis, y_axis;
+    var controls;
+    var star;
+
+    init();
+    create_spheres();
+    animate();
+    render();
+
+   var onError = function ( xhr ) { };
+
+
+   var onProgress = function ( xhr ) {
+      if ( xhr.lengthComputable ) {
+         var percentComplete = xhr.loaded / xhr.total * 100;
+         console.log( Math.round(percentComplete, 2) + '% downloaded' );
+      }
+   };
+
+    function init() {
+         time = 0;
+         x_axis = 300;
+         y_axis = 400;
+        scene = new THREE.Scene();
+
+        camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+        camera.position.z = 1000;
+
+        geometry = new THREE.BoxGeometry( 200, 200, 200 );
+        material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+
+        mesh = new THREE.Mesh( geometry, material );
+        scene.add( mesh );
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+
+        document.body.appendChild( renderer.domElement );
+         controls = new THREE.OrbitControls( camera );
+         controls.damping = 0.2;
+         controls.addEventListener( 'change', render );
+
+         var loader = new THREE.OBJMTLLoader();
+         loader.load( 'stan.obj', 'stan.mtl', function ( object ) {
+
+            object.position.y = - 80;
+            scene.add( object );
+
+         }, onProgress, onError );
+
+
+
+    }
+
+    function create_spheres()
+    {
+      var sun_radius = 100;
+
+      // set up the sphere vars
+      var radius = 50,
+          segments = 16,
+          rings = 16;
+      var sphereMaterial =
+        new THREE.MeshLambertMaterial(
+          {
+            color: 0xFFFFFF,
+            opacity: 0
+          });
+      // create a new mesh with
+      // sphere geometry - we will cover
+      // the sphereMaterial next!
+      sphere = new THREE.Mesh(
+
+        new THREE.SphereGeometry(
+          radius,
+          segments,
+          rings),
+
+        sphereMaterial);
+
+      star = new THREE.Mesh(
+
+         new THREE.SphereGeometry(
+            radius,
+            segments,
+            rings),
+
+         sphereMaterial);
+      // add the sphere to the scene
+      scene.add(sphere);
+      scene.add(star);
+
+
+            // create a point light
+      var pointLight =
+        new THREE.PointLight(0xFFFFFF);
+
+      // set its position
+      pointLight.position.x = 0;
+      pointLight.position.y = 0;
+      pointLight.position.z = 0;
+
+      // add to the scene
+      scene.add(pointLight);
+    }
+
+    function animate() {
+
+        requestAnimationFrame( animate );
+        controls.update();
+        render();
+
+    }
+
+    function render()
+    {
+        mesh.rotation.x += 0.01;
+        mesh.rotation.y += 0.02;
+        time += 0.05;
+        sphere.position.x = x_axis * Math.sin(time);
+        sphere.position.y = y_axis * Math.cos(time);
+
+        renderer.render( scene, camera );
+
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BitMesh Transaction Server Test</title>
+	<script type="text/javascript" src="js/bitcore.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+
+	<h1>BitMesh Transaction Server Test</h1>
+	<div id="output"></div>
+
+
+	<script type="text/javascript">
+
+		var utxos;
+
+		function update_dialog(text)
+		{
+			$("#output").append(text.toString() + "<br>");
+		}
+
+		/**
+  		  * Sends a post request to the transaction server
+		  * using jQuery.
+		  * @param {transaction} serialized bitcoin transaction
+		  * to post to the blockchain.
+		  */
+		function post_tx(transaction)
+		{
+
+			$.ajax(
+		    {
+		        url: "https://bitmesh.network/transaction",
+		        type: 'POST',
+		        data: transaction,
+				processData: false,
+		        headers:
+		        {
+		            "Content-Type":"application/octet-stream",
+		        },
+		        success: function()
+		        {
+		            update_dialog("Refund successfully posted to cloud.");
+		        },
+		        error: function(data, status)
+		        {
+		            console.log("Transaction not successfully added to server. Status: " + status);
+		            console.log(data);
+		        }
+		    });
+			console.log('ajax');
+		}
+
+
+		$(document).ready()
+		{
+			update_dialog("Starting up bitcore...");
+			var bitcore = require('bitcore');
+
+			var privateKey = bitcore.PrivateKey.fromWIF('L3BaCQYyLWigzuUQmV3Sdr8WxVuqDEynTjgXSfsTCrc2wY8unFHc');
+			update_dialog("Private key: " + privateKey.toString());
+
+			var publicKey = privateKey.toPublicKey();
+			update_dialog("Public key: " + publicKey.toString());
+
+			var address = new bitcore.Address(publicKey, bitcore.Networks.testnet);
+			update_dialog("Address: " + address.toString());
+
+			var toAddress = bitcore.Address.fromString("mnMQ1axGbcATwj24qwSmYTtzf52An1BDio", bitcore.Networks.testnet);
+			update_dialog("Setting address to send to: " + toAddress.toString());
+
+			$.ajax(
+		    {
+		        url: "https://test-insight.bitpay.com/api/addr/mv4iQGBSDacqbjSoAgRto44Ckd9n79cUnf/utxo",
+		        type: 'GET',
+		        async: false,
+		        success: function(data)
+		        {
+		        	utxos = data;
+
+		            // Data will have the stack trace on a
+		            // bad call to the server
+		            update_dialog("Got data from server: " + data);
+		        },
+		        error: function(data, status)
+		        {
+		            console.log("Could not get the unspent transaction outputs.");
+		        }
+		    });
+
+			var transaction = new bitcore.Transaction().from(utxos).to(address, 1000).change(address).fee(5430);
+			update_dialog("Created Transaction: " + transaction.toString());
+
+			// new Date(year, month, day, hours, minutes, seconds, milliseconds)
+			var five_mins = 2*60*1000;
+			var d = new Date();
+			var future = new Date((d.getTime() + five_mins));
+
+			transaction.lockUntilDate(future);
+			update_dialog("Locked Transaction Until: " + future.toString());
+
+			transaction.inputs[0].sequenceNumber = 0;
+
+			// Sign transaction
+			transaction.sign(privateKey);
+
+			var serTx = transaction.toBuffer();
+			console.log("txid: " + transaction.id);
+			update_dialog("Posting Transaction...");
+			post_tx(serTx);
+			console.log('posted');
+		}
+
+	</script>
+</body>
+</html>

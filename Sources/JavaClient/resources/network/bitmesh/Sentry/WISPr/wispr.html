@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<WISPAccessGatewayParam
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://www.wballiance.net/wispr/wispr_2_0.xsd">
+    <Redirect>
+       <MessageType>100</MessageType>
+       <ResponseCode>0</ResponseCode>
+       <VersionLow>2.0</VersionLow>
+       <VersionHigh>2.0</VersionHigh>
+       <AccessLocation>isocc=za,cc=27,ac=12,network=Bitmesh</AccessLocation>
+       <AccessProcedure>1.0</AccessProcedure>
+       <LocationName>BitMesh</LocationName>
+       <LoginURL>http://54.94.132.0</LoginURL>
+       <AbortLoginURL>http://54.94.132.0</AbortLoginURL>
+    </Redirect>
+</WISPAccessGatewayParam>
+-->
+Redirecting to BitMesh captive portal<br> If stuck, click <a href="http://54.94.132.0/">here</a>
+<div id="noJS">For use, you need JavaScript enabled.</div>
+<form id ="form" action="http://10.0.19.84:8080" style="visibility: hidden;" >
+    <input type="text" name="username" value="Mickey">
+    <input type="text" name="password" value="Mouse">
+    <input type="submit" value="Submit">
+</form>
+<script>
+document.getElementById('noJS').style.visibility = 'hidden';
+//setTimeout(document.getElementById("form").submit(), 1000);
+document.getElementById("form").submit();
+</script>
+</html>

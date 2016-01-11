@@ -1,0 +1,39 @@
+#!/bin/bash
+# Script to remove files associated with BitMesh
+
+. /usr/share/debconf/confmodule
+
+function main
+{
+	remove_files;
+}
+
+function remove_files
+{
+
+	db_purge bitmesh/outface
+	db_purge bitmesh/inface
+
+	# Remove the generated dnsmasq conf file
+	rm /etc/dnsmasq.conf
+	mv /etc/dnsmasq.conf_orig /etc/dnsmasq.conf
+
+	# Remove the generated interfaces file
+	if [ -a /etc/network/interfaces_orig ]
+	then
+		rm /etc/network/interfaces
+		mv /etc/network/interfaces_orig /etc/network/interfaces
+	else
+		rm /etc/network/interfaces_bmesh
+	fi
+
+	# Bring back the old hostapd conf if it existed before
+	if [ -x /etc/hostapd/hostapd.conf_orig ]
+	then
+		mv /etc/hostapd/hostapd.conf_orig /etc/hostapd/hostapd.conf
+	fi
+}
+
+main;
+
+#DEBHELPER#

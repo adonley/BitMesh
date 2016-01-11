@@ -1,0 +1,73 @@
+#!/bin/bash
+set -e
+
+# Load debconf library
+. /usr/share/debconf/confmodule
+
+# Allows for backing up in the configuration
+db_capb backup
+
+db_clear
+
+declare -a options;
+count=0
+
+## Get interfaces from the operating system
+for interface in $(ip link show | awk '/^[0-9]/ {print $2;} ' | sed 's/:$//');
+do
+	#echo "\"$interface\"";
+	if [ $interface != "lo" ] && [ $interface != "" ] ;
+	then
+		options[$count]=$interface;
+        count=$((count+1));
+	fi
+done
+
+if (( $count <= 1 ))
+then
+    echo "You only have one interface. This is not supported at the moment.";
+    exit;
+fi
+
+line_options="";
+for ((i = 0; i < ${#options[@]}; i++)); do
+    if (( $i > 0 ))
+    then
+        line_options="$line_options, ${options[$i]}";
+    else
+        line_options="${options[$i]}";
+    fi
+done
+
+echo "line_options: $line_options"
+
+# Set the choices the user has
+db_subst bitmesh/outface choices $line_options
+db_subst bitmesh/inface choices $line_options
+
+db_fset bitmesh/outface seen false
+db_fset bitmesh/inface seen false
+
+
+STATE=1
+while [ "$STATE" != 0 -a "$STATE" != 3 ]; 
+do
+    case "$STATE" in
+    1)
+		# outface
+		db_input high bitmesh/outface || true
+    ;;
+    
+    2)
+        # inface
+		db_input high bitmesh/inface || true
+    ;;
+    esac
+
+    # db_go will decrement the state by 1 if user goes backwards
+    if db_go; then
+        STATE=$(($STATE + 1))
+    else
+        STATE=$(($STATE - 1))
+    fi
+done

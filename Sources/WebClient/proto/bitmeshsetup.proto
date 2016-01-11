@@ -1,0 +1,21 @@
+package paymentchannels;
+
+message BitmeshSetup
+{
+	// price per second in satoshi
+	required uint64 price = 1;	
+
+	// server key used for escrow
+	required string server_key = 2;
+
+	// server port for user to send tx to
+	required int32 destination_port = 3;
+}
+
+message FundingMessage
+{
+	// transaction out funding the browser
+	required bytes tx_out = 1;
+
+	// 
+}

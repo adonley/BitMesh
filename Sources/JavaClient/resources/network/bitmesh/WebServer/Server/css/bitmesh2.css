@@ -1,0 +1,271 @@
+html, body {
+    height: 100%;
+    font-size: 14px;
+    background-color: #F2F2F2;
+    color: #2C3E50;
+}
+
+.container-fluid {
+	height: auto;
+	width: auto;
+	margin-top: 20px;
+	padding-right: 40px;
+
+	-webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#container-fluid {
+	padding-left: 240px;
+}
+
+#container-fluid.menu-visible {
+	padding-left: 40px;
+}
+
+.rel {
+	position: relative;
+}
+
+.slab-white-img {
+	border: 4px solid #E7E7E7;
+    background-color: #FFF;
+    padding: 10px;
+}
+
+.slab-white {
+	border: 4px solid #E7E7E7;
+    background-color: #FFF;
+    padding: 1.2rem;
+}
+
+.logo {
+	width: 140px;
+	margin-left: 20px;
+	margin-top: 2px;
+}
+
+.navbar {
+	margin-bottom: 0px;
+}
+
+.navbar-nav {
+    margin: 0;
+}
+
+.nav-pipe {
+	font-weight: 200;
+	font-size: 24px;
+	line-height: 10px;
+	padding-top: none;
+}
+
+.nav-header {
+	float: right;
+	margin-top: 2px;
+	padding right: 50px;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+span.line {
+  display: inline-block;
+}
+
+#menu-toggle {
+	border: ;
+}
+
+.spacer {
+	padding-top: 20px;
+}
+
+.small-spacer{
+	padding-top: 10px;
+}
+
+.textbox {
+	color:#3c3c3c;
+  	font-weight:500;
+	font-size: 18px;
+	border-radius: 0;
+	line-height: 22px;
+	background-color: #fbfbfb;
+	padding: 13px 13px 13px 54px;
+	margin-bottom: 10px;
+	width:100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+  border: 3px solid rgba(0,0,0,0);
+}
+
+.input:focus{
+	background: #fff;
+	box-shadow: 0;
+	border: 3px solid #3498db;
+	color: #3498db;
+	outline: none;
+  padding: 13px 13px 13px 54px;
+}
+
+
+/* Responsive Text Stuff */
+
+html{
+    font-family: "helvetica neue", helvetica, arial, sans-serif;
+    line-height: 1.4;
+    font-size: 13px;
+}
+
+/* smaller than bootstrap "xs" sizes 0px+ */
+@media screen and (max-width: 500px){
+	html{
+		font-size: 14px;
+	}
+
+	.logo {
+		padding-left: 0px;
+		margin-left: 0px;
+	}
+	.nav-header {
+		float: none;
+		margin-top: 0px;
+		padding-top: 0px;
+		padding-left: 0px;
+		padding-bottom: 10px;
+		font-size: 14px;
+		font-weight: 500;
+	}
+
+	.navbar-header {
+		text-align: center;
+	}
+
+	.navbar .navbar-nav {
+		display: inline-block;
+		float: none;
+		vertical-align: top;
+	}
+
+	.navbar .navbar-collapse {
+		text-align: center;
+	}
+
+}
+
+/* bootstrap "xs" sizes 500px+ */
+@media screen and (min-width: 501px){
+  html{
+    font-size: 14px;
+  }
+	.nav-header {
+		float: right;
+		margin-top: 12px;
+		padding-right: 20px;
+		padding-left: 0px;
+		font-size: 18px;
+		font-weight: 500;
+	}
+}
+@media screen and (min-width: 570px){
+  html{
+    font-size: 15px;
+  }
+}
+@media screen and (min-width: 620px){
+  html{
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 680px){
+  html{
+    font-size: 17px;
+  }
+}
+@media screen and (min-width: 720px){
+  html{
+    font-size: 18px;
+  }
+}
+
+/* boostrap "sm" sizes 768px+ */
+@media screen and (min-width: 768px){
+  html{
+    font-size: 19px;
+  }
+
+  .nav-header {
+		float: right;
+		padding-top: 0px;
+		font-size: 18px;
+		font-weight: 500;
+	}
+
+	.conversion-rate {
+		margin: 8px;
+	}
+}
+@media screen and (min-width: 860px){
+  html{
+    font-size: 20px;
+  }
+}
+
+/* boostrap "md" sizes 992px+ */
+@media screen and (min-width: 992px){
+  html{
+    font-size: 21px;
+  }
+}
+
+/* boostrap "md" sizes 1200px+ */
+@media screen and (min-width: 1200px){
+  html{
+    font-size: 22px;
+  }
+}
+section{
+    padding: 3rem 10%;
+    background: hsl(0, 0%, 98%);
+}
+section:nth-child(even){
+    background: hsl(0, 0%, 94%);
+}
+h1, h2{
+    line-height: 1.3;
+}
+h1{
+  font-size: 2rem;
+  margin: 0 0 1rem;
+}
+h2{
+  font-size: 1.5rem; 
+  margin: 1rem 0 2rem;
+}
+p{
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+a.button{
+  display: inline-block;
+  line-height: 2.5rem;
+  padding: 0 1.5rem;
+  margin-top: 1rem;
+  color: white;
+  background: #3c3c3c;
+  text-decoration: none;
+}
+
+
+#main_chart {
+	width: 100%;
+	height: 100%;
+}
+
+.main-chart {
+
+}

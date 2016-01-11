@@ -1,0 +1,2 @@
+?package(bitmesh):needs="text" section="Applications/Network/Monitoring"\
+  title="BitMesh" command="/usr/bin/bitmesh"
