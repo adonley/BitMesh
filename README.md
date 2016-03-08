@@ -4,7 +4,7 @@ BitMesh is a project built on the idea that if you pay for internet, it’s your
 
 How it works: Turn on BitMesh, an open hotspot appears, people connect to it and are redirected to a captive portal where they must pay you in Bitcoin to use the internet. 
 
-Overview
+#Overview
 BitMesh uses the following: iptables, dnsmasq, hostapd, Java server, webclient, Java app, bitcore.js, micropayment channels, bitcoinj, the WISPr protocol, nanohttpd, protocol buffers, gulp
 
 hostapd is in charge of the wifi connection and authentication process.<br>
@@ -19,11 +19,11 @@ protocol buffers are used to communicate payments between browser and hotspot <b
 gulp is used to minify and deploy the javascript<br>
 
 
-Goals of the project
+#Goals of the project
 We want BitMesh to enable micro-ISPs, where users pay for what they use and privacy is respected. Sellers should be able to download install and have a node running without having to fiddle with installing dependencies, system configuration or compiling code. User experience is important. It should just work. (We are not there yet).
 
 
-Project Layout
+#Project Layout
 Installers/Debian - this is the beginnings of a .deb file that would install bitmesh on debian systems. There were some issues in clearing the system database after a user answered a question once in an installer (i.e. - the system would automatically fill out the answers on which network interface to use during a reinstall). The basic function was to choose the interfaces on the host computer and put in place scripts to start and stop the server. This needs to be changed from the native package type and ideally would include compiling the java sources to the debian package spec.
 
 Installers/Raspi - The raspi installer was the preliminary testing we were doing before we moved to the debian installer. The code in this directory is mostly incomplete.
@@ -70,7 +70,7 @@ Sources/FileSigner - a small commandline app to sign BitMesh releases for verifi
 
 Sources/WebClient/js - most of these files are dependencies for bitcore, or for using protocol buffers with javascript. The main logic for us is in bitmesh.js or bitmesh_mobile.js. They are different files because javascript micropayments don’t work on mobile because when you change tabs on mobile, the javascript on the other tabs stops running, probably for power conservation.
 
-Todos:
+#Todos:
 Library management systems, migrate the main java source to maven or gradle.
 
 Integrate CHECKLOCKTIMEVERIFY, make the code much simpler
