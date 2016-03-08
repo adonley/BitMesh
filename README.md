@@ -5,8 +5,8 @@ BitMesh is a project built on the idea that if you pay for internet, it’s your
 How it works: Turn on BitMesh, an open hotspot appears, people connect to it and are redirected to a captive portal where they must pay you in Bitcoin to use the internet. 
 
 Entry points: 
-Sources/JavaClient/src/network/bitmesh/TransactionServer/Server/BitmeshServer.java
-Sources/JavaClient/src/network/bitmesh/TransactionServer/Client/BitmeshClient.java
+<br>Sources/JavaClient/src/network/bitmesh/TransactionServer/Server/BitmeshServer.java
+<br>Sources/JavaClient/src/network/bitmesh/TransactionServer/Client/BitmeshClient.java
 
 
 #Overview
