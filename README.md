@@ -7,16 +7,16 @@ How it works: Turn on BitMesh, an open hotspot appears, people connect to it and
 Overview
 BitMesh uses the following: iptables, dnsmasq, hostapd, Java server, webclient, Java app, bitcore.js, micropayment channels, bitcoinj, the WISPr protocol, nanohttpd, protocol buffers, gulp
 
-hostapd is in charge of the wifi connection and authentication process.
-dnsmasq assigns ip addresses via DHCP over the broadcasting interface
-iptables routes the traffic between the broadcasting and connected interface and NATs the traffic. 
-bitcoinj is used server side to manage connections and payment receipts 
-bitcore.js is used browser-side to create payment-channels with the bitcoinj server
-WISPr protocol shows clients a landing page when they connect to the BitMesh hotspot, before they even try to navigate to a website. This negates the issues with displaying a landing page when an https connection is requested. 
-micropayment channels let you pay in small amounts per second or whatever and all the small transactions are aggregated securely off-chain, with the resulting aggregated transaction being posted on-chain after a time limit
-nanohttpd is used for serving the captive portal and the hotspot UI
-protocol buffers are used to communicate payments between browser and hotspot 
-gulp is used to minify and deploy the javascript
+hostapd is in charge of the wifi connection and authentication process.<br>
+dnsmasq assigns ip addresses via DHCP over the broadcasting interface<br>
+iptables routes the traffic between the broadcasting and connected interface and NATs the traffic. <br>
+bitcoinj is used server side to manage connections and payment receipts <br>
+bitcore.js is used browser-side to create payment-channels with the bitcoinj server<br>
+WISPr protocol shows clients a landing page when they connect to the BitMesh hotspot, before they even try to navigate to a website. This negates the issues with displaying a landing page when an https connection is requested. <br>
+micropayment channels let you pay in small amounts per second or whatever and all the small transactions are aggregated securely off-chain, with the resulting aggregated transaction being posted on-chain after a time limit<br>
+nanohttpd is used for serving the captive portal and the hotspot UI<br>
+protocol buffers are used to communicate payments between browser and hotspot <br>
+gulp is used to minify and deploy the javascript<br>
 
 
 Goals of the project
